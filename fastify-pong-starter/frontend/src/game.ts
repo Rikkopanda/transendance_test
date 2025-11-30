@@ -1,7 +1,16 @@
-import { StandardMaterial, Color3, MeshBuilder, Vector3, Scene as BabylonScene, AbstractMesh } from '@babylonjs/core';
+import { ArcRotateCamera, HemisphericLight, StandardMaterial, Color3, MeshBuilder, Vector3, Scene as BabylonScene, AbstractMesh } from '@babylonjs/core';
 
 export function createGame(scene: BabylonScene, canvas?: HTMLCanvasElement) {
-	// court (invisible plane), paddles and ball
+	
+      // 1. Create camera
+    const camera = new ArcRotateCamera("cam", -Math.PI / 2, Math.PI / 2.6, 10, new Vector3(0, 0, 0), scene);
+    camera.attachControl(canvas, true);
+
+    // 2. Add light
+    const light = new HemisphericLight("light", new Vector3(0, 1, 0), scene);
+
+    
+    // court (invisible plane), paddles and ball
 	const paddleMat = new StandardMaterial('pMat', scene);
 	paddleMat.diffuseColor = new Color3(0.2, 0.6, 1);
 
